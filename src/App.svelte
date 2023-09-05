@@ -5,7 +5,8 @@
     import Currentweather from './Currentweather.svelte';
     import WeatherData from './WeatherData.svelte';
     import Forecast from './Forecast.svelte';
-    import TempChart from './TempChart.svelte';
+   // import TempChart from './TempChart.svelte';
+    let repeatTenTimes = Array.from({ length: 10 }, (_, i) => i + 1);
 
 	let query = "", currentWeather, forecastData = [], errorMessage, loading = false, eightTemps = [], nineTemps = [], isDaytime;
 
@@ -82,7 +83,7 @@
             </div>
         </div>
     </header>
-    
+    {#each repeatTenTimes as _}
     {#if currentWeather}
         <div class="row mt-3">
             <div class="col-lg-6 col-md-12 p-1">
@@ -100,7 +101,8 @@
                                         <div class="card-body cardeffects">
                                             <div class="col-12 p-3">
 												<h2>Forecast</h2>
-                                                <Forecast forecastData={forecastData} />
+                                               <Forecast forecastData={forecastData} />
+
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +116,7 @@
             <div class="col-lg-6 col-md-12 p-1">
                 <div class="row">
                     <div class="col-12 mb-2">
-                        <TempChart {nineTemps} />
+                      <!--  <TempChart {nineTemps} /> -->
                     </div>
                     <div class="col-12">
                         <img 
@@ -127,7 +129,7 @@
             </div>
         </div>
     {/if}
-    
+    {/each}
     <footer class="mt-3 pt-3 text-center">
         <p style="color: #FFFFFF;">
             © 2023 Weather App. All rights reserved. Designed and built by Bilal Ahmad Khan with Svelte, Bootstrap, CSS, Chart.js, and WeatherAPI.
